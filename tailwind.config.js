@@ -14,6 +14,9 @@ export default {
             'md': '768px',
             'xl': '900px',
           },
+          boxShadow: {
+            'pink-sh': 'inset 0px -12px 0px 11px #9D2DF5, inset 0px -4px 0px 5px #243041',
+          },
       },
     },
     plugins: [],
