@@ -3,14 +3,14 @@ import React from 'react'
 import menuImg from '../assets/icon-menu.svg'
 import heartImg from '../assets/icon-heart.svg'
 
-function Header() {
+function Header({selectedCategory}) {
   return (
     <div className={`flex justify-between`}>
       <div className={`flex gap-x-[1rem] `}>
-        <button className={`self-center bg-gradient-to-r from-[#FE71FE] to-[#7199FF] p-[1.5rem] max-md:p-[1rem] rounded-[50%]`}>
+        <button className={`self-center bg-gradient-to-r from-[#FE71FE] to-[#7199FF] shadow-pink-sh p-[1.5rem] max-md:p-[1rem] rounded-[50%]`}>
           <img className='max-w-[100%]' src={menuImg} alt="menu or pause" />
         </button>
-        <h1 className='text-[#fff] text-[4.5rem] max-md:text-[3rem] self-center'>Countries</h1>
+        <h1 className='text-[#fff] text-[4.5rem] max-md:text-[3rem] self-center'>{selectedCategory}</h1>
       </div>
       {/* Healths */}
       <div className={`flex`}>

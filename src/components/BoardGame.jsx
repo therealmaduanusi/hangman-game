@@ -48,17 +48,17 @@ function BoardGame({categories, selectedCategory}) {
     let random = Math.floor(Math.random() * categoryList.length);
     let picked = categoryList[random].name;
     setpicked(picked)
-    console.log(picked);
+    // console.log(picked);
 
   }, [selectedCategory])
   
   const handleGuess = (letter) => {
     setGuessedLetters((prev) => [...prev, letter]);
   };
-  console.log(guessedLetters);
+  // console.log(guessedLetters);
   return (
     <>
-      <Header />
+      <Header selectedCategory={selectedCategory} />
       <PuzzleBoard picked={picked} guessedLetters={guessedLetters} />
       <Keyboard onGuess={handleGuess} guessedLetters={guessedLetters} />
     </>

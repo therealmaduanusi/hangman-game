@@ -1,7 +1,6 @@
 import React from 'react'
 import ReturnHome from './ReturnHome';
 function GameRules() {
-    console.log('hello');
   return (
     <>
         <div className={`flex items-center max-sm:justify-between`}>

@@ -9,7 +9,7 @@ function Home({onHandleCategory}) {
             <div className={`relative max-w-[400px] mx-auto`}>
                 <img className={`absolute top-[-250px] `} src={homeImg} alt="Hangman Image Home section" />
             </div>
-            <div onClick={onHandleCategory} className={`bg-gradient-to-b from-[#FE71FE] to-[#7199FF] w-[10rem] h-[10rem] mx-[auto] rounded-[50%] flex justify-center cursor-pointer`}>
+            <div onClick={onHandleCategory} className={`bg-gradient-to-b from-[#FE71FE] to-[#7199FF] shadow-pink-sh w-[10rem] h-[10rem] mx-[auto] rounded-[50%] flex justify-center cursor-pointer`}>
                 <img className='self-center' src={playImg} alt="Play image to start game" />
             </div>
             <Link className='text-center block mt-[3.5rem]' to='/rules'>
