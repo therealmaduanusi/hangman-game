@@ -8,7 +8,7 @@ function Category({onHandleCategory, categoryNames, onGetCategory}) {
         <div onClick={onHandleCategory} className={`flex justify-center items-center rounded-full bg-gradient-to-b from-[#FE71FE] to-[#7199FF] shadow-pink-sh w-[4rem] h-[4rem] md:w-[5rem] md:h-[5rem] cursor-pointer`} to='/'>
           <img src={returnImg} alt="return home" />
         </div>
-        <h1 className={`text-center max-md:text-end xs:w-[100%] md:text-[5rem] max-md:text-[3rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke`}>Pick a Category</h1>
+        <h1 className={`text-center max-md:text-end xs:w-[100%] md:text-[5rem] max-md:text-[2rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke`}>Pick a Category</h1>
       </div>
       <div className={`grid md:grid-cols-3 gap-[2rem]`}>
         {categoryNames.map(categoryName => <CategoryArr onGetCategory={onGetCategory} key={categoryName} categoryName={categoryName} />)}

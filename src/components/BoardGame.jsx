@@ -49,7 +49,7 @@ function BoardGame({categories, selectedCategory}) {
     let random = Math.floor(Math.random() * categoryList.length);
     let picked = categoryList[random].name;
     setpicked(picked)
-    console.log(picked);
+    console.log(picked)
 
   }, [selectedCategory])
   

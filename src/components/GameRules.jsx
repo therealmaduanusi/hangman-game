@@ -5,7 +5,7 @@ function GameRules() {
     <>
         <div className={`flex items-center max-sm:justify-between`}>
             <ReturnHome />
-            <h1 className={`text-center max-md:text-end xs:w-[100%] text-[5rem] max-md:text-[3rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke`}>How To Play</h1>
+            <h1 className={`text-center max-md:text-end xs:w-[100%] text-[5rem] max-md:text-[2rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke`}>How To Play</h1>
         </div>
         <div className={`flex max-md:flex-col gap-[1rem] mt-[4rem]`}>
             <div className={`grid max-md:grid-cols-[30px_1fr] md:gap-[1rem] max-md:gap-x-[1rem] bg-[#fff] rounded-[10px] md:text-center p-[2rem]`}>
