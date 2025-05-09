@@ -4,13 +4,14 @@ import Header from './Header'
 import PuzzleBoard from './PuzzleBoard'
 import Keyboard from './Keyboard'
 function BoardGame({categories, selectedCategory}) {
-  let { Animals, ["Capital Cities"]: Capitals, Countries, Movies, Sports, ["TV Shows"]: TvShow } = categories
-  // console.log(categories);
-  // console.log(selectedCategory);
-  // console.log(Animals);
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [picked, setpicked] = useState('');
 
+  let { Animals, ["Capital Cities"]: Capitals, Countries, Movies, Sports, ["TV Shows"]: TvShow } = categories;
+  // console.log(categories);
+  // console.log(selectedCategory);
+  // console.log(Animals);
+  let letters = "abcdefghijklmnopqrstuvwxyz";
   
   useEffect(() => {
     let categoryList;
@@ -48,7 +49,7 @@ function BoardGame({categories, selectedCategory}) {
     let random = Math.floor(Math.random() * categoryList.length);
     let picked = categoryList[random].name;
     setpicked(picked)
-    // console.log(picked);
+    console.log(picked);
 
   }, [selectedCategory])
   
@@ -59,8 +60,8 @@ function BoardGame({categories, selectedCategory}) {
   return (
     <>
       <Header selectedCategory={selectedCategory} />
-      <PuzzleBoard picked={picked} guessedLetters={guessedLetters} />
-      <Keyboard onGuess={handleGuess} guessedLetters={guessedLetters} />
+      <PuzzleBoard letters={letters} picked={picked} guessedLetters={guessedLetters} />
+      <Keyboard letters={letters} onGuess={handleGuess} guessedLetters={guessedLetters} />
     </>
   )
 }

@@ -4,6 +4,8 @@ import menuImg from '../assets/icon-menu.svg'
 import heartImg from '../assets/icon-heart.svg'
 
 function Header({selectedCategory}) {
+  console.log('header');
+  
   return (
     <div className={`flex justify-between`}>
       <div className={`flex gap-x-[1rem] `}>
