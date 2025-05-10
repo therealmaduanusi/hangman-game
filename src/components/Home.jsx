@@ -4,9 +4,9 @@ import playImg from '../assets/icon-play.svg'
 import { Link } from 'react-router-dom'
 function Home({onHandleCategory}) {
   return (
-    <section className={`flex min-h-[100dvh] items-center max-w-[100%] max-sm:mx-[1rem]`}>
-        <div className={`relative max-w-[592px] h-[500px] flex-1 mx-[auto] mt-[3rem] bg-gradient-to-b from-[#344ABA] to-[#001479da] rounded-[72px] border-t border-t-[0.5rem] border-r border-r-[0.3rem] border-l border-l-[0.3rem] border-[#2463ff] border-b border-b-[0.5rem] border-b-[#261676]`}>
-            <div className={`absolute w-[100%] xs:top-[-100px] max-sm:top-[-65px] max-sm:px-[1.5rem]`}>
+    <section className={`flex min-h-[100dvh] items-center max-w-[100%] max-md:mx-[1rem]`}>
+        <div className={`relative max-w-[592px] h-[500px] flex-1 mx-[auto] mt-[3rem] bg-gradient-to-b from-[#344ABA] to-[#001479da] xs:rounded-[72px] max-sm:rounded-[48px] border-t border-t-[0.5rem] border-r border-r-[0.3rem] border-l border-l-[0.3rem] border-[#2463ff] border-b border-b-[0.5rem] border-b-[#261676]`}>
+            <div className={`absolute w-[100%] xs:top-[-100px] max-sm:top-[-70px] max-sm:px-[1.5rem]`}>
                 <img className={`mx-auto`} src={homeImg} alt="Hangman Image Home section" />
             </div>
             <div onClick={onHandleCategory} className={`playBtn bg-gradient-to-b from-[#FE71FE] to-[#7199FF] shadow-pink-sh w-[200px] h-[200px] mx-[auto] mt-[100px] rounded-[50%] flex justify-center cursor-pointer`}>
