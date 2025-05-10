@@ -1,6 +1,14 @@
 import React from 'react'
 import returnImg from '../assets/icon-back.svg'
-function Category({onHandleCategory, categoryNames, onGetCategory}) {
+function Category({categories,onHandleCategory, onGetCategory}) {
+  let categoryNames = []
+  // Loop through categories obj keys
+  for (const category in categories) {
+    categoryNames.push(category) // add the each key at the end of the "categoryArr"
+    // console.log(category);
+  }
+  console.log(categoryNames);
+  
   
   return (
     <div className={`flex flex-col gap-y-[1rem] md:gap-y-[10rem]`}>
@@ -11,7 +19,7 @@ function Category({onHandleCategory, categoryNames, onGetCategory}) {
         <h1 className={`text-center max-md:text-end xs:w-[100%] md:text-[5rem] max-md:text-[2rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke`}>Pick a Category</h1>
       </div>
       <div className={`grid md:grid-cols-3 gap-[2rem]`}>
-        {categoryNames.map(categoryName => <CategoryArr onGetCategory={onGetCategory} key={categoryName} categoryName={categoryName} />)}
+        {categoryNames.map(categoryName => <CategoryArr key={categoryName} onGetCategory={onGetCategory} categoryName={categoryName} />)}
       </div>
     </div>
   )
