@@ -1,3 +1,8 @@
+// Hooks, routes and route
+import { useEffect, useState } from 'react';
+import { Routes } from 'react-router';
+import { Route } from 'react-router';
+
 // components
 import BoardGame from './components/BoardGame'
 import GameRules from './components/GameRules'
@@ -6,38 +11,34 @@ import Category from './components/Category'
 
 import './App.css'
 
-// Hooks, routes and route
-import { useEffect, useState } from 'react';
-import { Routes } from 'react-router';
-import { Route } from 'react-router';
-
-// Guess letter
-import { categories } from '../data.json';
-// let categoryNames = Object.keys(categories);
-// console.log(categoryNames);
-// console.log(categories['Capital Cities']);
-
-
-
-let categoryNames = []
-// Loop through categories obj keys
-for (const category in categories) {
-  categoryNames.push(category) // add the each key at the end of the "categoryArr"
-  // console.log(category);
-}
-
 function App() {
   let [category, setCategory] = useState(false); // show Category
   let [startGame, setStartGame] = useState(false); // show BoardGame
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [categories, setCategories] = useState(null)
+  
+  /////////////////////////////////////////////////////
+  useEffect(() => {
+    // Fetch and store data
+    async function fetchData(api) {
+      let data = await fetch(api);
+      if (!data.ok) {
+        throw new Error("API data not fetching");
+      }
+      let response = await data.json();
+      let differentCategories = response.categories;
 
+      setCategories(differentCategories)
+    }
+    fetchData('/data.json'); // data path
+  }, [])
+  
+  /* handle Category and Home components based on condition */
   let handleCategory = () => {
     setCategory(preValue => !preValue)
   }
 
-  useEffect(() => {
-    // getCategory()
-  })
+  // start/show board component and select the categories keys
   function getCategory(categoryName) {
     setStartGame(true)
     setSelectedCategory(categoryName)
@@ -48,7 +49,8 @@ function App() {
       <Routes >
         <Route path='/' element={
           <>
-            {category ? ( startGame ? <BoardGame categories={categories} selectedCategory={selectedCategory} /> : <Category onGetCategory={getCategory} categoryNames={categoryNames} onHandleCategory={handleCategory} /> )  : <Home onHandleCategory={handleCategory} setCategory={setCategory} />}
+            {/* Renders board game when both category and start game is True */}
+            {category ? ( startGame ? <BoardGame categories={categories} selectedCategory={selectedCategory} /> : <Category  categories={categories} onGetCategory={getCategory} onHandleCategory={handleCategory} /> )  : <Home onHandleCategory={handleCategory} setCategory={setCategory} />}
           </>
         } />
         <Route path='/rules' element={<GameRules />} />
