@@ -11,23 +11,23 @@ function Category({categories,onHandleCategory, onGetCategory}) {
   
   
   return (
-    <div className={`flex flex-col gap-y-[1rem] md:gap-y-[10rem]`}>
-      <div className={`flex items-center max-sm:justify-between`}>
-        <div onClick={onHandleCategory} className={`flex justify-center items-center rounded-full bg-gradient-to-b from-[#FE71FE] to-[#7199FF] shadow-pink-sh w-[4rem] h-[4rem] md:w-[5rem] md:h-[5rem] cursor-pointer`} to='/'>
+    <section className={`min-h-[100dvh] flex flex-col justify-center gap-y-[2rem] md:px-[4rem] max-md:p-[1rem]`}>
+      <div className={`flex items-center justify-between`}>
+        <div onClick={onHandleCategory} className={`flex justify-center items-center rounded-full bg-gradient-to-b from-[#FE71FE] to-[#7199FF] shadow-pink-sh w-[94px] h-[94px] max-md:h-[64px] max-md:w-[64px] cursor-pointer`} to='/'>
           <img src={returnImg} alt="return home" />
         </div>
-        <h1 className={`text-center max-md:text-end xs:w-[100%] md:text-[5rem] max-md:text-[2rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke`}>Pick a Category</h1>
+        <h1 className={`text-center max-md:text-end md:w-[100%] xl:text-[10rem] text-[3.4rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke`}>Pick a Category</h1>
       </div>
-      <div className={`grid md:grid-cols-3 gap-[2rem]`}>
+      <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2rem]`}>
         {categoryNames.map(categoryName => <CategoryArr key={categoryName} onGetCategory={onGetCategory} categoryName={categoryName} />)}
       </div>
-    </div>
+    </section>
   )
 }
 
 function CategoryArr({categoryName, onGetCategory}) {
   return (
-    <div onClick={ () => onGetCategory(categoryName)} className={`text-[#fff] bg-[#2463ff] py-[1rem] md:py-[3rem] text-center text-[2rem] rounded-[20px] border-t border-t-[0.3rem] border-r border-r-[0.3rem] border-l border-l-[0.3rem] border-[#4277fd] cursor-pointer hover:bg-[#4277fd] hover:border-[#2463ff] uppercase`}>{categoryName}</div>
+    <div onClick={ () => onGetCategory(categoryName)} className={`text-[#fff] bg-[#2463ff] py-[1rem] md:py-[3rem] w-[384p] text-center text-[2rem] rounded-[20px] border-t border-t-[0.3rem] border-r border-r-[0.3rem] border-l border-l-[0.3rem] border-[#4277fd] cursor-pointer hover:bg-[#4277fd] hover:border-[#2463ff] uppercase`}>{categoryName}</div>
   )
 }
 
