@@ -2,7 +2,7 @@ import React from 'react'
 import ReturnHome from './ReturnHome';
 function GameRules() {
   return (
-    <section className={`min-h-[100dvh] md:max-w-[1212px] md:mx-auto flex flex-col justify-center gap-y-[2rem] p-[1rem]`}>
+    <section className={`min-h-[100dvh] md:mx-auto flex flex-col justify-center gap-y-[2rem] p-[1rem]`}>
             <div className={`flex items-center max-md:justify-between`}>
                 <ReturnHome />
                 <h1 className={`text-center max-md:text-end md:w-[100%] md:text-[10rem] text-[3.4rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke`}>How To Play</h1>
