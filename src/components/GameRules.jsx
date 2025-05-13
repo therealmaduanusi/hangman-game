@@ -12,7 +12,7 @@ function GameRules() {
                     <h2 className={`xs:row-span-2 self-center text-[#2463ff] text-[1.5rem] xs:text-[4rem]`}>01</h2>
                     <p className={`text-[2rem] text-[#261676] uppercase tracking-[2px] whitespace-nowrap`}> Choose a category </p>
                     <p className={`max-sm:col-span-2 text-[#887DC0] xs:text-[1.2rem]`}>
-                        First, choose a word category, like animals or movies. The computer then randomly selects a secret word from that opic and shows you blanks for each letter of the word.
+                        First, choose a word category, like animals or movies. The computer then randomly selects a secret word from that topic and shows you blanks for each letter of the word.
                     </p>
                 </div>
                 <div className={`md:max-w-[384px] grid max-md:grid-cols-[15%_1fr] md:gap-[1rem] max-md:gap-x-[1rem] bg-[#fff] rounded-[40px] md:text-center p-[2rem]`}>
