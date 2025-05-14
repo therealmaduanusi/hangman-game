@@ -13,6 +13,7 @@ function BoardGame({categories, selectedCategory}) {
   // console.log(Animals);
   let letters = "abcdefghijklmnopqrstuvwxyz";
   
+  // Pick a category and get it value randomly
   useEffect(() => {
     let categoryList;
     switch (selectedCategory) {
@@ -53,16 +54,36 @@ function BoardGame({categories, selectedCategory}) {
 
   }, [selectedCategory])
   
+  // Add guessed letter to an array
   const handleGuess = (letter) => {
     setGuessedLetters((prev) => [...prev, letter]);
   };
+
+  //////////////////////////////////////////////////
+  /* Game logic */
+  /////////////////////////////////////////////////
+  console.log(picked.split(' '));
+  let pickedwords = picked.toLowerCase().split(' ');
+  let arrayWords = picked.toLowerCase().split(' ')
+  arrayWords.map(word => {
+    console.log(word);
+    
+    word.split(' ').map(char => {
+      console.log(char);
+      
+    })   
+  })
+  guessedLetters.map(guessedLetter => {
+    pickedwords.includes(guessedLetter) ? console.log(guessedLetter) : console.log('Wrong pick')
+    // console.log(guessedLetter);
+  })
   // console.log(guessedLetters);
   return (
-    <>
+    <section className={`px-[1rem] md:px-[5rem] py-[1rem]`}>
       <Header selectedCategory={selectedCategory} />
-      <PuzzleBoard letters={letters} picked={picked} guessedLetters={guessedLetters} />
+      <PuzzleBoard letters={letters} picked={pickedwords} guessedLetters={guessedLetters} />
       <Keyboard letters={letters} onGuess={handleGuess} guessedLetters={guessedLetters} />
-    </>
+    </section>
   )
 }
 
