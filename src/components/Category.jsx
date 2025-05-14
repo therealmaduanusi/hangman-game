@@ -7,7 +7,7 @@ function Category({categories,onHandleCategory, onGetCategory}) {
     categoryNames.push(category) // add the each key at the end of the "categoryArr"
     // console.log(category);
   }
-  console.log(categoryNames);
+  // console.log(categoryNames);
   
   
   return (
