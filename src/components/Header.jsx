@@ -3,7 +3,7 @@ import React from 'react'
 import menuImg from '../assets/icon-menu.svg'
 import heartImg from '../assets/icon-heart.svg'
 
-function Header({selectedCategory}) {
+function Header({selectedCategory, scores}) {
   // console.log('header');
   
   return (
@@ -16,7 +16,7 @@ function Header({selectedCategory}) {
       </div>
       {/* Healths */}
       <div className={`flex w-[50%] gap-x-[1rem] self-center justify-end`}>
-        <progress max="8" value="8" className={`self-center h-[1.3rem] transition-all duration-500 ease-in-out mobile:w-[6rem] [&::-moz-progress-bar]:bg-white [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-white [&::-webkit-progress-bar]:p-[2px_6px] mobile:[&::-webkit-progress-bar]:p-[2px_3px] [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-[#261676]`}></progress>
+        <progress max="8" value={scores} className={`self-center h-[1.3rem] transition-all duration-500 ease-in-out mobile:w-[6rem] [&::-moz-progress-bar]:bg-white [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-white [&::-webkit-progress-bar]:p-[2px_6px] mobile:[&::-webkit-progress-bar]:p-[2px_3px] [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:bg-[#261676]`}></progress>
         <img className='self-center' src={heartImg} alt="health img" />
       </div>
     </div>
