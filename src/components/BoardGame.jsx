@@ -4,8 +4,12 @@ import Header from './Header'
 import PuzzleBoard from './PuzzleBoard'
 import Keyboard from './Keyboard'
 function BoardGame({categories, selectedCategory}) {
+  //////////////////////////////////////////////////
+  /* Game logic */
+  /////////////////////////////////////////////////
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [picked, setpicked] = useState('');
+  const [scores, setScores] = useState(8)
 
   let { Animals, ["Capital Cities"]: Capitals, Countries, Movies, Sports, ["TV Shows"]: TvShow } = categories;
   // console.log(categories);
@@ -52,35 +56,21 @@ function BoardGame({categories, selectedCategory}) {
     setpicked(picked)
     console.log(picked)
 
-  }, [selectedCategory])
+  }, [Animals, Capitals, Countries, Movies, Sports, TvShow,selectedCategory])
   
   // Add guessed letter to an array
   const handleGuess = (letter) => {
     setGuessedLetters((prev) => [...prev, letter]);
+    if (!picked.toLowerCase().split('').includes(letter)) {
+      setScores(preValue => preValue - 1)
+    }
   };
-
-  //////////////////////////////////////////////////
-  /* Game logic */
-  /////////////////////////////////////////////////
-  console.log(picked.split(' '));
+  
+  console.log(guessedLetters);
   let pickedwords = picked.toLowerCase().split(' ');
-  let arrayWords = picked.toLowerCase().split(' ')
-  arrayWords.map(word => {
-    console.log(word);
-    
-    word.split(' ').map(char => {
-      console.log(char);
-      
-    })   
-  })
-  guessedLetters.map(guessedLetter => {
-    pickedwords.includes(guessedLetter) ? console.log(guessedLetter) : console.log('Wrong pick')
-    // console.log(guessedLetter);
-  })
-  // console.log(guessedLetters);
   return (
     <section className={`px-[1rem] md:px-[5rem] py-[1rem]`}>
-      <Header selectedCategory={selectedCategory} />
+      <Header scores={scores} selectedCategory={selectedCategory} />
       <PuzzleBoard letters={letters} picked={pickedwords} guessedLetters={guessedLetters} />
       <Keyboard letters={letters} onGuess={handleGuess} guessedLetters={guessedLetters} />
     </section>
