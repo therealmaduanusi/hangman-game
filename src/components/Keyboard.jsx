@@ -1,6 +1,6 @@
 import React from "react";
 
-function Keyboard({ onGuess, guessedLetters, letters }) {
+function Keyboard({ onGuess, guessedLetters, letters, onWinLosePause }) {
   let lettersArr = letters.split("");
 
   // console.log(letters);
@@ -12,13 +12,13 @@ function Keyboard({ onGuess, guessedLetters, letters }) {
       {lettersArr.map((letter) => (
         <button
           onClick={() => onGuess(letter)}
-          className={` hover:bg-[#2463ff] py-[0.5rem] w-[95%] justify-self-center text-[#261676] uppercase text-[2rem] rounded-[20px] ${
+          className={`hover:bg-[#2463ff] py-[0.5rem] w-[95%] justify-self-center text-[#261676] uppercase text-[2rem] rounded-[20px] ${
             guessedLetters.includes(letter)
               ? "bg-[#ffffff35] cursor-not-allowed hover:bg-[#ffffff35] hover:text-[#261676]"
-              : "bg-[#fff] hover:text-[#fff]"
+              : onWinLosePause ? "cursor-not-allowed bg-[#fff] hover:bg-[#fff]" : "bg-[#fff] hover:text-[#fff]"
           }`}
           key={letter}
-          disabled={guessedLetters.includes(letter) ? true : false}
+          disabled={guessedLetters.includes(letter) ? true : onWinLosePause ? true : false}
         >
           {letter}
         </button>
