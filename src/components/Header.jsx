@@ -3,13 +3,13 @@ import React from 'react'
 import menuImg from '../assets/icon-menu.svg'
 import heartImg from '../assets/icon-heart.svg'
 
-function Header({selectedCategory, scores}) {
+function Header({selectedCategory, scores, onPaused}) {
   // console.log('header');
   
   return (
     <div className={`flex justify-between gap-x-[1rem]`}>
       <div className={`flex gap-x-[1rem] w-[50%]`}>
-        <button className={`self-center flex justify-center bg-gradient-to-r from-[#FE71FE] to-[#7199FF] shadow-pink-sh rounded-[50%] p-[0.9rem]`}>
+        <button onClick={onPaused} className={`self-center flex justify-center bg-gradient-to-r from-[#FE71FE] to-[#7199FF] shadow-pink-sh rounded-[50%] p-[0.9rem]`}>
           <img className='self-center' src={menuImg} alt="menu or pause" />
         </button>
         <h1 className='text-[#fff] text-[2.7rem] max-md:text-[1.5rem] self-center'>{selectedCategory}</h1>
