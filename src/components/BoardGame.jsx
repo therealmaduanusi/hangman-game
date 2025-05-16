@@ -10,13 +10,16 @@ function BoardGame({categories, selectedCategory}) {
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [picked, setpicked] = useState('');
   const [scores, setScores] = useState(8)
+  const [winLosePause, setWinLosePause] = useState('');
+  const [onWinLosePause, setOnWinLosePause] = useState(false);
 
   let { Animals, ["Capital Cities"]: Capitals, Countries, Movies, Sports, ["TV Shows"]: TvShow } = categories;
   // console.log(categories);
   // console.log(selectedCategory);
   // console.log(Animals);
   let letters = "abcdefghijklmnopqrstuvwxyz";
-  
+  let pickedwords = picked.toLowerCase().split(' '); // convert string to an array
+
   // Pick a category and get it value randomly
   useEffect(() => {
     let categoryList;
@@ -57,22 +60,63 @@ function BoardGame({categories, selectedCategory}) {
     console.log(picked)
 
   }, [Animals, Capitals, Countries, Movies, Sports, TvShow,selectedCategory])
-  
-  // Add guessed letter to an array
+
+  //////////////////////////////////////////////////
+  /* Win or Lose */
+  /////////////////////////////////////////////////
+  useEffect(() => {
+    // filter the array with an empty string (' ')
+    let pickedNewArray = picked.toLowerCase().split('').filter(pickedVlaue => {
+      if (pickedVlaue !== ' ') {
+        return pickedVlaue
+      }
+    })
+
+    let newArr = []; // new arr for correct guessed array
+    picked.toLowerCase().split('').map(pickedVlaue => {
+      if (guessedLetters.includes(pickedVlaue)) {
+        newArr.push(pickedVlaue)
+
+        // equate both the new correct array and the filter picked array
+        if (newArr.join('') === pickedNewArray.join('')) {
+          setWinLosePause('winner')
+          setOnWinLosePause(true)
+        }
+      }
+    })
+
+    // Lose game
+    if (scores === 0) {
+      setWinLosePause('loser')
+      setOnWinLosePause(true)
+    }
+    
+  }, [guessedLetters, picked, scores])
+
   const handleGuess = (letter) => {
     setGuessedLetters((prev) => [...prev, letter]);
     if (!picked.toLowerCase().split('').includes(letter)) {
       setScores(preValue => preValue - 1)
     }
   };
+
+  // Pause Game
+  function handlePause() {
+    setWinLosePause('paused')
+    setOnWinLosePause(preValue => !preValue)
+  }
   
-  console.log(guessedLetters);
-  let pickedwords = picked.toLowerCase().split(' ');
+  const styles = {
+    fontSize: '3rem',
+    color: `${winLosePause === 'winner' ? 'green' : winLosePause === 'paused' ? 'yellow' : 'red'}`,
+    textAlign: 'center'
+  }
   return (
     <section className={`px-[1rem] md:px-[5rem] py-[1rem]`}>
-      <Header scores={scores} selectedCategory={selectedCategory} />
+      <Header scores={scores} selectedCategory={selectedCategory} onPaused={handlePause} />
+      {onWinLosePause && <h1 style={styles}>Game: {winLosePause}</h1>}
       <PuzzleBoard letters={letters} picked={pickedwords} guessedLetters={guessedLetters} />
-      <Keyboard letters={letters} onGuess={handleGuess} guessedLetters={guessedLetters} />
+      <Keyboard letters={letters} onGuess={handleGuess} guessedLetters={guessedLetters} onWinLosePause={onWinLosePause} />
     </section>
   )
 }
