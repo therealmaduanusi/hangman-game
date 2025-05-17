@@ -20,8 +20,8 @@ function App() {
   /////////////////////////////////////////////////////
   useEffect(() => {
     // Fetch and store data
-    async function fetchData(api) {
-      let data = await fetch(api);
+    async function fetchData() {
+      let data = await fetch("/data.json"); // data path
       if (!data.ok) {
         throw new Error("API data not fetching");
       }
@@ -30,7 +30,7 @@ function App() {
 
       setCategories(differentCategories);
     }
-    fetchData("../data.json"); // data path
+    fetchData(); 
   }, []);
 
   /* handle Category and Home components based on condition */
