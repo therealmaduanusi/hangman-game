@@ -19,7 +19,6 @@ function BoardGame({
   const [winLosePause, setWinLosePause] = useState("");
   const [onWinLosePause, setOnWinLosePause] = useState(false);
   const [playAgain, setPlayAgain] = useState("");
-console.log(picked);
 
   let {
     Animals,
