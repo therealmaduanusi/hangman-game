@@ -40,27 +40,27 @@ function BoardGame({
     let categoryList;
     switch (selectedCategory) {
       case "Animals":
-        console.log("Animals");
+        // console.log("Animals");
         categoryList = Animals;
         break;
       case "Movies":
-        console.log("Movies");
+        // console.log("Movies");
         categoryList = Movies;
         break;
       case "TV Shows":
-        console.log("TV Shows");
+        // console.log("TV Shows");
         categoryList = TvShow;
         break;
       case "Countries":
-        console.log("Countries");
+        // console.log("Countries");
         categoryList = Countries;
         break;
       case "Capital Cities":
-        console.log("Capital Cities");
+        // console.log("Capital Cities");
         categoryList = Capitals;
         break;
       case "Sports":
-        console.log("Sports");
+        // console.log("Sports");
         categoryList = Sports;
         break;
       default:
@@ -72,7 +72,7 @@ function BoardGame({
     let random = Math.floor(Math.random() * categoryList.length);
     let picked = categoryList[random].name;
     setpicked(picked);
-    console.log(picked);
+    // console.log(picked);
   }, [Animals, Capitals, Countries, Movies, Sports, TvShow, selectedCategory, playAgain]);
   
   //////////////////////////////////////////////////
@@ -147,7 +147,6 @@ function BoardGame({
         />
       )}
       <section className={`px-[1rem] md:px-[5rem] py-[1rem]`}>
-        <button onClick={newGuess}>Go to category</button>
         <Header
           scores={scores}
           selectedCategory={selectedCategory}
@@ -189,11 +188,11 @@ function Modal({
         className={`relative max-w-[592px] w-full h-[445px] mx-[auto] mx-[1rem] bg-gradient-to-b from-[#344ABA] to-[#001479da] xs:rounded-[72px] max-sm:rounded-[48px] border-t border-t-[0.5rem] border-r border-r-[0.3rem] border-l border-l-[0.3rem] border-[#2463ff] border-b border-b-[0.5rem] border-b-[#261676]`}
       >
         <h2
-          className={`text-[4rem] text-center w-[100%] xs:top-[-100px] max-sm:top-[-70px] max-sm:px-[1.5rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke capitalize`}
+          className={`absolute top-[-60px] md:top-[-120px] text-[5rem] md:text-[9rem] text-center w-[100%] max-sm:top-[-70px] max-sm:px-[1.5rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke capitalize`}
         >
           {winLosePause}
         </h2>
-        <div className={`flex flex-col gap-[2rem]`}>
+        <div className={`flex flex-col gap-[2rem] mt-[6rem]`}>
           <button
             onClick={() => {
               winLosePause === "you win" || winLosePause === "you lose"
