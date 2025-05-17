@@ -18,8 +18,9 @@ function BoardGame({
   const [scores, setScores] = useState(8);
   const [winLosePause, setWinLosePause] = useState("");
   const [onWinLosePause, setOnWinLosePause] = useState(false);
-  const [playAgain, setPlayAgain] = useState('')
-  
+  const [playAgain, setPlayAgain] = useState("");
+console.log(picked);
+
   let {
     Animals,
     ["Capital Cities"]: Capitals,
@@ -33,7 +34,6 @@ function BoardGame({
   // console.log(Animals);
   let letters = "abcdefghijklmnopqrstuvwxyz";
   let pickedwords = picked.toLowerCase().split(" "); // convert string to an array
-  
 
   // Pick a category and get it value randomly
   useEffect(() => {
@@ -73,8 +73,17 @@ function BoardGame({
     let picked = categoryList[random].name;
     setpicked(picked);
     // console.log(picked);
-  }, [Animals, Capitals, Countries, Movies, Sports, TvShow, selectedCategory, playAgain]);
-  
+  }, [
+    Animals,
+    Capitals,
+    Countries,
+    Movies,
+    Sports,
+    TvShow,
+    selectedCategory,
+    playAgain,
+  ]);
+
   //////////////////////////////////////////////////
   /* Win or Lose */
   /////////////////////////////////////////////////
@@ -129,9 +138,9 @@ function BoardGame({
     // Reset all the necessary states
     setGuessedLetters([]);
     setScores(8);
-    setWinLosePause('');
+    setWinLosePause("");
     setOnWinLosePause(false);
-    setPlayAgain((prev) => prev === '' ? 'again' : ''); // triggers useEffect
+    setPlayAgain((prev) => (prev === "" ? "again" : "")); // triggers useEffect
   }
   return (
     <>
@@ -144,6 +153,7 @@ function BoardGame({
           setStartGame={setStartGame}
           newGuess={newGuess}
           setScores={setScores}
+          picked={picked}
         />
       )}
       <section className={`px-[1rem] md:px-[5rem] py-[1rem]`}>
@@ -177,10 +187,11 @@ function Modal({
   onGetCategory,
   setCategory,
   setStartGame,
-  newGuess
+  newGuess,
+  picked,
 }) {
   function playAgain() {
-    newGuess()
+    newGuess();
   }
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center">
@@ -221,6 +232,13 @@ function Modal({
             Quite Game
           </button>
         </div>
+        {winLosePause === "you lose" ? (
+          <span
+            className={`block text-center text-[1.5rem] xs:text-[2.3rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent mt-[1rem]`}
+          >
+            Correct Answer: {picked}
+          </span>
+        ) : null}
       </div>
     </div>
   );
