@@ -30,7 +30,7 @@ function App() {
 
       setCategories(differentCategories);
     }
-    fetchData("/data.json"); // data path
+    fetchData("../data.json"); // data path
   }, []);
 
   /* handle Category and Home components based on condition */
