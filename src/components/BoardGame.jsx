@@ -3,12 +3,13 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import PuzzleBoard from "./PuzzleBoard";
 import Keyboard from "./Keyboard";
+
+import { ACTION } from "../App"; // dispatch action obj
 function BoardGame({
   categories,
   selectedCategory,
   onGetCategory,
-  setCategory,
-  setStartGame,
+  dispatch,
 }) {
   //////////////////////////////////////////////////
   /* Game logic */
@@ -27,7 +28,7 @@ function BoardGame({
     Movies,
     Sports,
     ["TV Shows"]: TvShow,
-  } = categories;
+  } = categories; // an array of different categories
   // console.log(categories);
   // console.log(selectedCategory);
   // console.log(Animals);
@@ -148,8 +149,7 @@ function BoardGame({
           winLosePause={winLosePause}
           onPaused={handlePause}
           onGetCategory={onGetCategory}
-          setCategory={setCategory}
-          setStartGame={setStartGame}
+          dispatch={dispatch}
           newGuess={newGuess}
           setScores={setScores}
           picked={picked}
@@ -184,8 +184,7 @@ function Modal({
   winLosePause,
   onPaused,
   onGetCategory,
-  setCategory,
-  setStartGame,
+  dispatch,
   newGuess,
   picked,
 }) {
@@ -223,8 +222,7 @@ function Modal({
           </button>
           <button
             onClick={() => {
-              setCategory(false);
-              setStartGame(false);
+              dispatch({type: ACTION.QUITE_GAME})
             }}
             className={`block bg-gradient-to-b from-[#FE71FE] to-[#7199FF] shadow-pink-sh text-[#fff] w-[235px] h-[62px] mx-[auto] rounded-[2rem] text-[2rem] uppercase`}
           >

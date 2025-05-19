@@ -1,5 +1,5 @@
 // Hooks, routes and route
-import { useEffect, useState } from "react";
+import { useEffect, useReducer } from "react";
 import { Routes } from "react-router";
 import { Route } from "react-router";
 
@@ -11,13 +11,41 @@ import Category from "./components/Category";
 
 import "./App.css";
 
-function App() {
-  let [category, setCategory] = useState(false); // show Category
-  let [startGame, setStartGame] = useState(false); // show BoardGame
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [categories, setCategories] = useState(null);
+const ACTION = {
+  SHOW_CATEGORY: "categories",
+  START_GAME: "startGame",
+  QUITE_GAME: "quiteGame",
+  ALL_CATIGORIES: "allCategories",
+  SELECTED_CATEGORY: "selectedCategory",
+};
 
-  /////////////////////////////////////////////////////
+// Reducer function
+function reducer(state, action) {
+  switch (action.type) {
+    case ACTION.SHOW_CATEGORY:
+      return { ...state, category: !state.category };
+    case ACTION.START_GAME:
+      return { ...state, startGame: !state.startGame };
+    case ACTION.QUITE_GAME:
+      return { ...state, category: false, startGame: false };
+    case ACTION.ALL_CATIGORIES:
+      return { ...state, categories: action.payload.categories };
+    case ACTION.SELECTED_CATEGORY:
+      return { ...state, selectedCategory: action.payload.categoryName };
+    default:
+      return state;
+  }
+}
+
+function App() {
+  const [gameMode, dispatch] = useReducer(reducer, {
+    category: false,
+    startGame: false,
+    categories: null,
+    selectedCategory: null,
+  }); // show Category or show BoardGame based on condition
+
+  //////////////////////////////////////////////////////////
   useEffect(() => {
     // Fetch and store data
     async function fetchData() {
@@ -27,21 +55,26 @@ function App() {
       }
       let response = await data.json();
       let differentCategories = response.categories;
-
-      setCategories(differentCategories);
+      dispatch({
+        type: ACTION.ALL_CATIGORIES,
+        payload: { categories: differentCategories },
+      });
     }
-    fetchData(); 
+    fetchData();
   }, []);
 
   /* handle Category and Home components based on condition */
   let handleCategory = () => {
-    setCategory((preValue) => !preValue);
+    dispatch({ type: ACTION.SHOW_CATEGORY });
   };
 
   // start/show board component and select the categories keys
   function getCategory(categoryName) {
-    setStartGame(preValue => !preValue);
-    setSelectedCategory(categoryName);
+    dispatch({ type: ACTION.START_GAME });
+    dispatch({
+      type: ACTION.SELECTED_CATEGORY,
+      payload: { categoryName: categoryName },
+    }); // get the category name
   }
 
   return (
@@ -52,25 +85,21 @@ function App() {
           element={
             <>
               {/* Renders board game when both category and start game is True */}
-              {startGame ? (
+              {gameMode.startGame ? (
                 <BoardGame
-                  categories={categories}
-                  selectedCategory={selectedCategory}
+                  categories={gameMode.categories}
+                  selectedCategory={gameMode.selectedCategory}
                   onGetCategory={getCategory}
-                  setCategory={setCategory}
-                  setStartGame={setStartGame}
+                  dispatch={dispatch}
                 />
-              ) : category ? (
+              ) : gameMode.category ? (
                 <Category
-                  categories={categories}
+                  categories={gameMode.categories}
                   onGetCategory={getCategory}
                   onHandleCategory={handleCategory}
                 />
               ) : (
-                <Home
-                  onHandleCategory={handleCategory}
-                  setCategory={setCategory}
-                />
+                <Home onHandleCategory={handleCategory} />
               )}
             </>
           }
@@ -83,3 +112,4 @@ function App() {
 }
 
 export default App;
+export { ACTION };
