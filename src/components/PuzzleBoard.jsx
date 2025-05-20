@@ -1,5 +1,5 @@
 import React from "react";
-
+import { motion } from "motion/react";
 function PuzzleBoard({ picked, guessedLetters }) {
   return (
     <div
@@ -27,7 +27,13 @@ function PuzzleBoard({ picked, guessedLetters }) {
 
 function Word({ letter, guessedLetters }) {
   return (
-    <span
+    <motion.span
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.5,
+        ease: "easeIn",
+      }}
       className={`
         self-center flex justify-center items-center 
         w-[40px] sm:w-[60px] md:w-[80px] lg:w-[100px] 
@@ -41,7 +47,7 @@ function Word({ letter, guessedLetters }) {
       `}
     >
       {guessedLetters.includes(letter) ? letter.toUpperCase() : ""}
-    </span>
+    </motion.span>
   );
 }
 

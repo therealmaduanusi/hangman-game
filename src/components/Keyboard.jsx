@@ -1,5 +1,5 @@
 import React from "react";
-
+import { motion } from "motion/react";
 function Keyboard({ onGuess, guessedLetters, letters, onWinLosePause }) {
   let lettersArr = letters.split("");
 
@@ -10,7 +10,14 @@ function Keyboard({ onGuess, guessedLetters, letters, onWinLosePause }) {
       className={`letterContainer grid grid-cols-[repeat(auto-fit,_minmax(40px,_1fr))] md:grid-cols-[repeat(auto-fit,_minmax(109px,_1fr))] gap-[0.5rem] md:gap-[1rem]`}
     >
       {lettersArr.map((letter) => (
-        <button
+        <motion.button
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 1 }}
+          transition={{
+            duration: 0.5, ease: "easeIn"
+          }}
           onClick={() => onGuess(letter)}
           className={`
             uppercase font-bold text-[#261676] w-[100%] h-[84px] max-sm:h-[56px]
@@ -32,7 +39,7 @@ function Keyboard({ onGuess, guessedLetters, letters, onWinLosePause }) {
           }
         >
           {letter}
-        </button>
+        </motion.button>
       ))}
     </div>
   );

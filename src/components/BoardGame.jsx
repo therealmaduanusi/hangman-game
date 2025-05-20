@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { motion } from "motion/react";
 // Components
 import Header from "./Header";
 import PuzzleBoard from "./PuzzleBoard";
 import Keyboard from "./Keyboard";
 
 import { ACTION } from "../App"; // dispatch action obj
-function BoardGame({
-  categories,
-  selectedCategory,
-  onGetCategory,
-  dispatch,
-}) {
+function BoardGame({ categories, selectedCategory, onGetCategory, dispatch }) {
   //////////////////////////////////////////////////
   /* Game logic */
   /////////////////////////////////////////////////
@@ -193,8 +189,14 @@ function Modal({
   }
   return (
     <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center">
-      <div
-        className={`relative max-w-[592px] w-full h-[445px] mx-[auto] mx-[1rem] bg-gradient-to-b from-[#344ABA] to-[#001479da] xs:rounded-[72px] max-sm:rounded-[48px] border-t border-t-[0.5rem] border-r border-r-[0.3rem] border-l border-l-[0.3rem] border-[#2463ff] border-b border-b-[0.5rem] border-b-[#261676]`}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.3,
+          ease: "easeIn",
+        }}
+        className={`relative max-w-[592px] w-full h-[445px] mx-[auto] max-md:mx-[1rem] bg-gradient-to-b from-[#344ABA] to-[#001479da] xs:rounded-[72px] max-sm:rounded-[48px] border-t border-t-[0.5rem] border-r border-r-[0.3rem] border-l border-l-[0.3rem] border-[#2463ff] border-b border-b-[0.5rem] border-b-[#261676]`}
       >
         <h2
           className={`absolute top-[-60px] md:top-[-120px] text-[5rem] md:text-[9rem] text-center w-[100%] max-sm:top-[-70px] max-sm:px-[1.5rem] bg-gradient-to-b from-[#67B6FF] to-[#fff] bg-clip-text text-transparent text-stroke capitalize`}
@@ -202,7 +204,13 @@ function Modal({
           {winLosePause}
         </h2>
         <div className={`flex flex-col gap-[2rem] mt-[6rem]`}>
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1 }}
+            transition={{
+              duration: 0.1,
+              ease: "easeIn",
+            }}
             onClick={() => {
               winLosePause === "you win" || winLosePause === "you lose"
                 ? playAgain()
@@ -213,21 +221,33 @@ function Modal({
             {winLosePause === "you win" || winLosePause === "you lose"
               ? "play again!"
               : "continue"}
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1 }}
+            transition={{
+              duration: 0.1,
+              ease: "easeIn",
+            }}
             onClick={onGetCategory}
             className={`block bg-[#2463ff] text-[#fff] w-[275px] h-[62px] mx-[auto] rounded-[2rem] border-t border-t-[0.3rem] border-r border-r-[0.3rem] border-l border-l-[0.3rem] border-[#4277fd] text-[2rem] hover:bg-[#4277fd] hover:border-[#2463ff] uppercase`}
           >
             New Category
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 1 }}
+            transition={{
+              duration: 0.1,
+              ease: "easeIn",
+            }}
             onClick={() => {
-              dispatch({type: ACTION.QUITE_GAME})
+              dispatch({ type: ACTION.QUITE_GAME });
             }}
             className={`block bg-gradient-to-b from-[#FE71FE] to-[#7199FF] shadow-pink-sh text-[#fff] w-[235px] h-[62px] mx-[auto] rounded-[2rem] text-[2rem] uppercase`}
           >
             Quite Game
-          </button>
+          </motion.button>
         </div>
         {winLosePause === "you lose" ? (
           <span
@@ -236,7 +256,7 @@ function Modal({
             Correct Answer: {picked}
           </span>
         ) : null}
-      </div>
+      </motion.div>
     </div>
   );
 }
